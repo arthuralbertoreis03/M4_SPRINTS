@@ -3,14 +3,18 @@
 #include <WiFiAP.h>
 #include <WebServer.h>
 #include <ESPmDNS.h>
+
 #define led_verde  7
 #define led_vermelho 4
+
 int ponto1 = 0;
 int ponto2 = 0;
 int qntperg = 0;
-const char *ssid = "Teobaldo"; //Digite o nome da sua rede aqui
-const char *password = "bacon"; //Digite a senha da rede, deve conter no mínimo 8 caractéres se não dá erro.
+
+const char *ssid = "Teste.com"; //Digite o nome da sua rede aqui
+const char *password = "SenhaForte"; //Digite a senha da rede, deve conter no mínimo 8 caractéres se não dá erro.
 WebServer server(80);
+
 void setup() {
   Serial.begin(115200);
   pinMode(led_verde, OUTPUT);
@@ -36,34 +40,32 @@ void setup() {
   void handleRoot(){
     String html = "";
     html += "<meta charset='UTF-8'>";
-    html += "<body style='background: linear-gradient(90deg, rgba(91,30,159,1) 0%, rgba(77,39,182,1) 100%);'>";
-    html += "<h1 style=' color: white; padding: 36px 50px; margin-top: 30px; margin-left: 50px;'>Jogador 1</h1>";
-    html += "<h1 style=' color: white; padding: 36px 50px; margin-top: -60px; margin-left: 50px;'>Pontuação: ";
+    html += "<body style='background: #ffff7a;'>";
+    html += "<h1 style=' color: green; padding: 36px 50px; margin-top: 30px; margin-left: 50px;'>Jogador 1</h1>";
+    html += "<h1 style=' color: green; padding: 36px 50px; margin-top: -60px; margin-left: 50px;'>Pontuação: ";
     html += ponto1;
     html += "</h1>";
-    html += "<h1 style=' color: white; padding: 36px 50px; margin-top: -200px; margin-left: 950px;'>Jogador 2</h1>";
-    html += "<h1 style=' color: white; padding: 36px 50px; margin-top: -65px; margin-left: 950px;'>Pontuaçã0: ";
+    html += "<h1 style=' color: green; padding: 36px 50px; margin-top: -200px; margin-left: 950px;'>Jogador 2</h1>";
+    html += "<h1 style=' color: green; padding: 36px 50px; margin-top: -65px; margin-left: 950px;'>Pontuação: ";
     html += ponto2;
     html += "</h1>";
-    html += "<h1 style='color: white; padding: 36px 50px; margin-top: 30px; margin-left: 450px;'>Perguntas de matemática</h1>";
-    html += "<h2 style='color: white; margin-left: 540px';> 1)  1 X 8? </h2> <br><br><br>";
-    html += "<h2><a href=\"/on\" style='background-color: gray; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>A) 8</a></h2><br><br><br>";
-    html += "<h2><a href=\"/off\" style='background-color: gray; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>B) 24</a></h2><br><br><br>";
-    html += "<h2><a href=\"/off\" style='background-color: gray; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>C) 8</a></h2><br><br><br>";
-    html += "<h2 style='color: white; margin-left: 540px';> 2)  2 X 56? </h2> <br><br><br>";
-    html += "<h2><a href=\"/off\" style='background-color: gray; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>A) 196</a></h2><br><br><br>";
-    html += "<h2><a href=\"/on\" style='background-color: gray; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>B) 112</a></h2><br><br><br>";
-    html += "<h2><a href=\"/off\" style='background-color: gray; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>C) 156</a></h2><br><br><br>";
-    html += "<h2 style='color: white; margin-left: 540px';> 3)  4 X 60? </h2> <br><br><br>";
-    html += "<h2><a href=\"/off\" style='background-color: gray; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>A) 42</a></h2><br><br><br>";
-    html += "<h2><a href=\"/on\" style='background-color: gray; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>B) 240</a></h2><br><br><br>";
-    html += "<h2><a href=\"/off\" style='background-color: gray; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>C) 54</a></h2><br><br><br>";
-    html += "<h2 style='color: white; margin-left: 540px';> 4) 3 X 27? </h2> <br><br><br>";
-    html += "<h2><a href=\"/on\" style='background-color: gray; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>A) 81</a></h2><br><br><br>";
-    html += "<h2><a href=\"/off\" style='background-color: gray; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>B) 33</a></h2><br><br><br>";
-    html += "<h2><a href=\"/off\" style='background-color: gray; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>C) 49</a></h2><br><br><br>";
-    html += "Clique <a href=\"/on\" style='background-color: #4CAF50; border: none; color: white; padding: 16px 40px;'>aqui</a> se a) está correta. <br><br><br>";
-    html += "Clique <a href=\"/off\" style='background-color: #4CAF50; border: none; color: white; padding: 16px 40px;'>aqui</a> se acha que a alternativa b) está correta. <br><br><br>";
+    html += "<h1 style='color: green; padding: 36px 50px; margin-top: 30px; margin-left: 450px;'>Quiz da copa</h1>";
+    html += "<h2 style='color: green; margin-left: 540px';> 1)Quem foi o maior artilheiro das copas? </h2> <br><br><br>";
+    html += "<h2><a href=\"/on\" style='background-color: blue; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>A) Klose</a></h2><br><br><br>";
+    html += "<h2><a href=\"/off\" style='background-color: blue; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>B) Ronaldo</a></h2><br><br><br>";
+    html += "<h2><a href=\"/off\" style='background-color: blue; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>C) Mbappe</a></h2><br><br><br>";
+    html += "<h2 style='color: green; margin-left: 540px';> 2) em que ano foi o primeiro título do Brasil </h2> <br><br><br>";
+    html += "<h2><a href=\"/off\" style='background-color: blue; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>A) 1970</a></h2><br><br><br>";
+    html += "<h2><a href=\"/on\" style='background-color: blue; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>B) 1958</a></h2><br><br><br>";
+    html += "<h2><a href=\"/off\" style='background-color: blue; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>C) 1962</a></h2><br><br><br>";
+    html += "<h2 style='color: green; margin-left: 540px';> 3) Qual é o time com mais títulos em copas do mundo? </h2> <br><br><br>";
+    html += "<h2><a href=\"/off\" style='background-color: blue; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>A) Alemanha</a></h2><br><br><br>";
+    html += "<h2><a href=\"/on\" style='background-color: blue; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>B) Brasil</a></h2><br><br><br>";
+    html += "<h2><a href=\"/off\" style='background-color: blue; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>C) Itália</a></h2><br><br><br>";
+    html += "<h2 style='color: green; margin-left: 540px';> 4) Em que país foi sediada a copa do mundo de 1970? </h2> <br><br><br>";
+    html += "<h2><a href=\"/on\" style='background-color: blue; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>A) México</a></h2><br><br><br>";
+    html += "<h2><a href=\"/off\" style='background-color: blue; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>B) Alemanha</a></h2><br><br><br>";
+    html += "<h2><a href=\"/off\" style='background-color: blue; border: none; color: white; padding: 16px 40px; margin-left: 550px;'>C) Brasil</a></h2><br><br><br>";
     html += "<h3>Autores: Arthur Alberto </h3>";
     html += "</body>";
     server.send(200, "text/html", html);
